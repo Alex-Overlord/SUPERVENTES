@@ -16,6 +16,18 @@ const url         = "mongodb://localhost:27017";
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	let db = client.db("SUPERVENTES");
 
+	/* Pas de sélection */
+	app.get("/", (req, res) => {
+		console.log("/");
+		console.log("test pas de sélection");
+		try {
+			res.end(JSON.stringify("test"));
+		} catch(e) {
+			console.log("Erreur sur / : " + e);
+			res.end(JSON.stringify([]));
+		}
+	});
+	
 	/* Liste des produits */
 	app.get("/produits", (req,res) => {
 		console.log("/produits");
