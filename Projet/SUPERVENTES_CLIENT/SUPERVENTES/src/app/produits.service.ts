@@ -21,12 +21,12 @@ export class ProduitsService {
 
     getProduits(): Observable<any> {
         let url = this.urlBase+'produits';
-	console.log("Dans le service ProduitsService avec "+url);
+	      console.log("Dans le service ProduitsService avec "+url);
         return this.http.get(url);
     }
 
     getCategories(): Observable<any> {
-        return this.http.get(this.urlBase+'types');
+        return this.http.get(this.urlBase+'categories');
     }
 
     getProduitsParCategorie(categorie: string): Observable<any> {

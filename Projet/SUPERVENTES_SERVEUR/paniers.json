@@ -1,5 +1,8 @@
 [
-  {"email":"claire.delune@mailserver.fr"},
+  {"email":"claire.delune@mailserver.fr"}, 
+  [
+    {"nom":"café", "quantite":1}
+  ],
   {"email":"jessica.nett@mailserver.fr"},
   {"email":"alexis.sonsuper@mailserver.fr"}
 ]

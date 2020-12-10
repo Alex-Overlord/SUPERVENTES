@@ -32,7 +32,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	/* Liste des produits suivant une catégorie */
 	app.get("/produits/:categorie", (req,res) => {
-  let categorie = req.params.categorie;
+  		let categorie = req.params.categorie;
 		console.log("/produits/"+categorie);
 		try {
 			db.collection("produits").find({type:categorie}).toArray((err, documents) => {

@@ -9,11 +9,11 @@ const routes: Routes = [
 
 	{ path: 'produits', component: ProduitsComponent },
 
-	{ path: 'categorie', component: CategorieComponent },
+	{ path: 'categories', component: CategorieComponent },
 
 	{ path: 'panier/achat/:nom/:marque', component: PanierComponent },  
   
-  	{ path: 'membres/connexion', component: ConnexionComponent },
+  { path: 'membres/connexion', component: ConnexionComponent },
 ];
 
 @NgModule({
