@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let categorie of categories"> {{produit['type']}} <a *nngIf="!(user|async)" [routerLink]="['produitParCategorie', produit.type]"> Categorie</a></li> 
+</ul>

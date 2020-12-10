@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { PanierComponent } from './panier/panier.component';
+import { ProduitsParCategorieComponent } from './produits-par-categorie/produits-par-categorie.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PanierComponent } from './panier/panier.component';
     MenuComponent,
     CategorieComponent,
     ConnexionComponent,
-    PanierComponent
+    PanierComponent,
+    ProduitsParCategorieComponent
   ],
   imports: [
     BrowserModule,
