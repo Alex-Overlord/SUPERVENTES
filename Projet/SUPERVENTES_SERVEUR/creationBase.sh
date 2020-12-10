@@ -1,3 +1,3 @@
-# mongoimport --db SUPERVENTES --collection membres --file membres.json --jsonArray --drop
+mongoimport --drop --db SUPERVENTES --collection users --file users.json --jsonArray
 mongoimport --drop --db SUPERVENTES --collection produits --file produits.json --jsonArray 
-# mongoimport --db SUPERVENTES --collection marques --file marques.json --jsonArray --drop
+mongoimport --drop --db SUPERVENTES --collection paniers --file paniers.json --jsonArray 
