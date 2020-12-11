@@ -31,15 +31,15 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	/* Liste des produits suivant une catégorie */
-	app.get("/produits/:categorie", (req,res) => {
-  		let categorie = req.params.categorie;
+	app.get("/produits/:categorie", (req, res) => {
+  	let categorie = req.params.categorie;
 		console.log("/produits/"+categorie);
 		try {
 			db.collection("produits").find({type:categorie}).toArray((err, documents) => {
 				res.end(JSON.stringify(documents));
 			});
 		} catch(e) {
-			console.log("Erreur sur /produits/"+categorie+" : "+ e);
+			console.log("Erreur sur /produits/" + categorie + " : " + e);
 			res.end(JSON.stringify([]));
 		}
 	});
@@ -63,7 +63,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	/* Connexion */
-	app.post("/membre/connexion", (req,res) => {
+	app.post("/membre/connexion", (req, res) => {
 		try {
 			db.collection("membres")
 			.find(req.body)
@@ -78,10 +78,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 
-	app.post("/panier/ajout", (req,res) => {
-
-	console.log("route: produit/ajout avec ",JSON.stringify(req.body));
-	res.end(JSON.stringify({"reponde": "ajout d'un produit dans le panier"}));
+	app.post("/panier/ajout", (req, res) => {
+		console.log("route: produit/ajout avec ", JSON.stringify(req.body));
+		res.end(JSON.stringify({"reponde": "ajout d'un produit dans le panier"}));
 	});
 });
 

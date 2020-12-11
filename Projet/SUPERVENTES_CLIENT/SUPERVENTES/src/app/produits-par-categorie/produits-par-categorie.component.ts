@@ -9,12 +9,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./produits-par-categorie.component.css']
 })
 export class ProduitsParCategorieComponent implements OnInit {
-  
   public produits: any;
+  public categorie: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private produitsService: ProduitsService) {
+    console.log("Dans le constructeur du composant produits-par-categorie");
   }
 
+  ngOnInit() {
+    console.log("Dans ngOnInit() du composant produits-par-categorie");    
+    this.produitsService.getProduitsParCategorie(this.categorie).subscribe(
+      produits => {this.produits = produits;},
+      categorie => {this.categorie = categorie});
+  }
 }
