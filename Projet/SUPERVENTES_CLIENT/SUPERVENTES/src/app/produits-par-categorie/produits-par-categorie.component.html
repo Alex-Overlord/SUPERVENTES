@@ -1,10 +1,17 @@
-<ul>
-  <li *ngFor="let categorie of categories"> {{produit['type']}} 
-    <a *nngIf="!(user|async)" [routerLink]="['produitParCategorie', produit.type]">Categorie</a>
-    <ul>
-      <li *ngFor="let produit of categorie"> {{produit['name']}}
-        <a *nngIf="!(user|async)" [routerLink]="['produitParCategorie', produit.type]">Produit</a>
-      </li>
-    </ul>
+<!-- <li *ngFor="let cat of categorie">{{cat}}</li> -->
+
+<!-- <ul>
+  <li *ngFor="let produit of categorie"> {{produit['name']}}
+    <a *nngIf="!(user|async)" [routerLink]="['/produits/:categorie', produit.type]">Produit</a>
   </li>
-</ul>
+</ul> -->
+
+<p>TEST</p>
+
+<!-- <ul>
+  <li *ngFor="let produit of produits"> {{produit['nom']}} ({{produit['type']}}) <a *nngIf="!(user|async)" [routerLink]="['/panier/achat', produit.nom, produit.marque]"> achat </a></li> 
+</ul> -->
+
+<li *ngFor="let produit of produits"> ({{produit['type']}})
+  <a *[routerLink]="['/produits/:categorie', produit.type]">Produit</a>
+</li>

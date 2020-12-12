@@ -1,5 +1,7 @@
 <nav class="navbar navbar-dark bg-dark navbar-fixed-top navbar-expand">
   <div class="container-fluid">
+
+    <!-- Si non connecté -->
     <ul *ngIf="!(user|async)" class="navbar-nav">
       <li class="nav-item">
           <a class="nav-link active" routerLink="/membres/connexion">Se connecter</a>
@@ -9,17 +11,19 @@
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" routerLink="/categories">Liste des categories</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" routerLink="/produitsParCategorie">Liste des produits par categorie</a>
-      </li>
+      </li>  
     </ul>
+
+    <!-- Si connecté -->
     <ul *ngIf="user|async" class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" (click)="deconnexion()">Déconnexion de {{user|async}}</a>
+      </li>
         <li class="nav-item">
-            <a class="nav-link active" routerLink="/produits">Liste des produit</a>
+          <a class="nav-link active" routerLink="/produits">Liste des produit</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" (click)="deconnexion()">Déconnexion de {{user|async}}</a>
+          <a class="nav-link disabled" routerLink="/produits/:categorie">Liste des produits par categorie</a>
         </li>
     </ul>
   </div>

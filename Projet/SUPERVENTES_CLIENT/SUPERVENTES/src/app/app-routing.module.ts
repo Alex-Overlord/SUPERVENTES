@@ -4,7 +4,7 @@ import { ProduitsComponent} from './produits/produits.component';
 import { CategorieComponent} from './categorie/categorie.component';
 import { PanierComponent } from './panier/panier.component';
 import { ConnexionComponent } from './connexion/connexion.component';
-// import { ProduitsParCategorieComponent} from './categorie/categorie.component';
+import { ProduitsParCategorieComponent} from './produits-par-categorie/produits-par-categorie.component';
 
 const routes: Routes = [
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   
   { path: 'membres/connexion', component: ConnexionComponent },
   
-  // { path: 'produitParCategorie', component: ProduitsParCategorieComponent },
+  { path: 'produits/:categorie', component: ProduitsParCategorieComponent },
 
 ];
 

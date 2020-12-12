@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
   templateUrl: './categorie.component.html',
   styleUrls: ['./categorie.component.css']
 })
-export class CategorieComponent implements OnInit {
 
-    public categorie: any;
+export class CategorieComponent implements OnInit {
+  public categorie: any;
+       
+  constructor(private produitsService: ProduitsService) {
+    console.log("Dans le constructeur du composant CategorieComponent");
+  }
     
-    
-    constructor(private produitsService: ProduitsService) {}
-    
-    ngOnInit() {    
-       this.produitsService.getCategories().subscribe(categories => {
-            this.categorie = categories;
-       });
-    }
+  ngOnInit() {    
+    console.log("Dans ngOnInit() du composant produits-par-categorie");  
+    this.produitsService.getCategories().subscribe(categories => { this.categorie = categories; });
+  }
 }
