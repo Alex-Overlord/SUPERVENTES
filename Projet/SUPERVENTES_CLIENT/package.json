@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.8.2"
+    "angular": "^1.8.2",
+    "bootstrap": "^5.0.0-beta1"
   },
   "devDependencies": {},
   "scripts": {

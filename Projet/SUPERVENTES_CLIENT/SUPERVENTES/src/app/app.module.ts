@@ -12,6 +12,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { PanierComponent } from './panier/panier.component';
 import { ProduitsParCategorieComponent } from './produits-par-categorie/produits-par-categorie.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
