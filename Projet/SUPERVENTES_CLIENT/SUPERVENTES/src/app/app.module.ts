@@ -13,6 +13,7 @@ import { PanierComponent } from './panier/panier.component';
 import { ProduitsParCategorieComponent } from './produits-par-categorie/produits-par-categorie.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RechercheComponent } from './recherche/recherche.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ConnexionComponent,
     PanierComponent,
     ProduitsParCategorieComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    RechercheComponent
   ],
   imports: [
     BrowserModule,

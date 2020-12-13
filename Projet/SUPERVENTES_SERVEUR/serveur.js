@@ -43,6 +43,20 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.end(JSON.stringify([]));
 		}
 	});
+	
+	/* Liste des produits selon un type */
+	app.get("/recherche/:categorie/:Text", (req, res) => {
+  
+		console.log("/produits/" + req.params.categorie+"/"+req.params.Text);
+		try {
+			db.collection("produits").find({ req.params.categorie: req.params.Text}).toArray((err, documents) => {
+				res.end(JSON.stringify(documents));
+			});
+		} catch(e) {
+			console.log("Erreur sur /produits/" + req.params.categorie + " : " + e);
+			res.end(JSON.stringify([]));
+		}
+	});
 
 
 	/* Liste des catégories de produits */
