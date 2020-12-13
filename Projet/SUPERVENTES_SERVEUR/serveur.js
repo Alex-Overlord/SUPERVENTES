@@ -49,7 +49,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
   
 		console.log("/produits/" + req.params.categorie+"/"+req.params.Text);
 		try {
-			db.collection("produits").find({ req.params.categorie: req.params.Text}).toArray((err, documents) => {
+			db.collection("produits").find({ type: req.params.Text}).toArray((err, documents) => {
 				res.end(JSON.stringify(documents));
 			});
 		} catch(e) {
