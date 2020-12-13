@@ -12,5 +12,5 @@
     <input type="submit" value="Rechercher"/>
 </form>
 <ul>
-    <li *ngFor="let produit of produits"> {{produit['nom']}} ({{produit['type']}})</li> 
+    <li *ngFor="let produit of produits"> {{produit['nom']}} ({{produit['type']}}) {{produit['prix']}} {{produit['marque']}}<a *ngIf="user|async" [routerLink]="['/panier/achat', produit.nom, produit.marque]"> achat </a></li> 
 </ul>
