@@ -11,6 +11,7 @@ import { CategorieComponent } from './categorie/categorie.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { PanierComponent } from './panier/panier.component';
 import { ProduitsParCategorieComponent } from './produits-par-categorie/produits-par-categorie.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProduitsParCategorieComponent } from './produits-par-categorie/produits
     CategorieComponent,
     ConnexionComponent,
     PanierComponent,
-    ProduitsParCategorieComponent
+    ProduitsParCategorieComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

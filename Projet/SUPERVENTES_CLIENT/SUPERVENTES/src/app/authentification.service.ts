@@ -34,4 +34,8 @@ export class AuthentificationService {
   verificationConnexion(identifiants: Object): Observable<any> {
       return this.http.post(this.baseURL+'membre/connexion', JSON.stringify(identifiants), httpOptions);
   }
+
+  Inscription(identifiants: Object): Observable<any> {
+      return this.http.post(this.baseURL+'membre/inscription', JSON.stringify(identifiants), httpOptions);
+  }
 }

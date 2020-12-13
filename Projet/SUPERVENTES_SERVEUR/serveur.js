@@ -80,6 +80,31 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.end(JSON.stringify({"resultat": 0, "message": e}));
 		}
 	});
+	
+	/* Ajout user */
+	app.post("/membre/inscription", (req, res)=> {
+		console.log("/membre/inscription/");
+		try{
+			db.collection("membres")
+			.find(req.body)
+			.toArray((err, documents) => {
+				if (documents != undefined && documents.length == 1){
+					res.end(JSON.stringify({"resultat": 0, "message": "Membre déjà inscrit"}));
+				}
+				else{	
+					db.collection("membres")
+					.insertOne( 
+						req.body
+					);
+					res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
+				}
+			});
+
+		} catch(e) {
+			res.end(JSON.stringify({"resultat": 0, "message": "Inscription echec utilisateur déjà inscrit"}));
+		}
+
+	});
 
 
 	app.post("/panier/ajout", (req, res) => {

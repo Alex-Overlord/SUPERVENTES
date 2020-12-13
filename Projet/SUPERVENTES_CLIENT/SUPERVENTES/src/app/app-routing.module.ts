@@ -5,6 +5,7 @@ import { CategorieComponent} from './categorie/categorie.component';
 import { PanierComponent } from './panier/panier.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { ProduitsParCategorieComponent} from './produits-par-categorie/produits-par-categorie.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'membres/connexion', component: ConnexionComponent },
   
   { path: 'produits/:categorie', component: ProduitsParCategorieComponent },
+
+  { path: 'membres/inscription', component: InscriptionComponent},
+
 
 ];
 
