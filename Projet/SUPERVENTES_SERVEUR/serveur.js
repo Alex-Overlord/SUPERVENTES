@@ -92,6 +92,21 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.end(JSON.stringify([]));
 		}
 	});
+	
+	/* Le panier d'un user */
+	app.get("/panier/:user", (req,res) => {
+		console.log("/panier/"+req.params.user);
+		try {
+			db.collection("paniers").find({ email: req.params.user}).toArray((err, documents) => {
+			res.end(JSON.stringify(documents[0].produits));
+			});
+		} catch(e) {
+			console.log("Erreur sur /panier : " + e);
+			res.end(JSON.stringify([]));
+		}
+	});
+	
+	
 
 	/* Connexion */
 	app.post("/membre/connexion", (req, res) => {

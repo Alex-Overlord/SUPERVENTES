@@ -14,7 +14,9 @@ const routes: Routes = [
 
 	{ path: 'categories', component: CategorieComponent },
 
-	{ path: 'panier/achat/:nom/:marque', component: PanierComponent },  
+	{ path: 'panier/achat/:nom/:marque', component: PanierComponent }, 
+
+	{ path: 'panier', component: PanierComponent }, 
   
   	{ path: 'membres/connexion', component: ConnexionComponent },
   

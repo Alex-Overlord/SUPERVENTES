@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AuthentificationService } from '../authentification.service';
+import { PanierService } from '../panier.service';
+import { Observable } from 'rxjs';
 
 
 const httpOptions = {
@@ -19,16 +22,27 @@ const httpOptions = {
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
+  public produits: any;
+  public mail: String = "";
+  public user: Observable<string>;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient,private authService: AuthentificationService,  private route: ActivatedRoute, private panierS: PanierService) { 
+  this.user = this.authService.getUser()}
 
   ngOnInit() {
-  	this.route.params.subscribe((params: Params) => {
-  		console.log(params);
-  		this.http.post('http://localhost:8888/panier/ajout', JSON.stringify(params), httpOptions).subscribe((resultat: any) => {
-  			console.log(resultat);
-  		});
-  	});
+
+
+
+    //Affichage du contenu du panier
+
+    this.user.subscribe( res  => {
+      this.mail = res;
+    });
+    this.panierS.getPanier(this.mail).subscribe(res => {
+      this.produits = res;
+    });
+
+
   }
 
 }
