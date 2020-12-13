@@ -49,9 +49,26 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
   
 		console.log("/produits/" + req.params.categorie+"/"+req.params.Text);
 		try {
+			if( req.params.categorie == "type"){
 			db.collection("produits").find({ type: req.params.Text}).toArray((err, documents) => {
 				res.end(JSON.stringify(documents));
 			});
+			}
+			else if ( req.params.categorie == "nom" ){
+			db.collection("produits").find({ nom: req.params.Text}).toArray((err, documents) => {
+				res.end(JSON.stringify(documents));
+			});
+			}
+			else if (req.params.categorie == "prix") {
+			db.collection("produits").find({ prix: req.params.Text}).toArray((err, documents) => {
+				res.end(JSON.stringify(documents));
+			});
+			}
+			else if (req.params.categorie == "marque") {
+			db.collection("produits").find({ marque: req.params.Text}).toArray((err, documents) => {
+				res.end(JSON.stringify(documents));
+			});
+			}
 		} catch(e) {
 			console.log("Erreur sur /produits/" + req.params.categorie + " : " + e);
 			res.end(JSON.stringify([]));
