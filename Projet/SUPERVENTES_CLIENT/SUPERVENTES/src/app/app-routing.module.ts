@@ -18,15 +18,15 @@ const routes: Routes = [
 
 	{ path: 'panier', component: PanierComponent }, 
   
-  	{ path: 'membres/connexion', component: ConnexionComponent },
+  { path: 'membres/connexion', component: ConnexionComponent },
   
  	{ path: 'produits/:categorie', component: ProduitsParCategorieComponent },
 
-  	{ path: 'membres/inscription', component: InscriptionComponent},
+  { path: 'membres/inscription', component: InscriptionComponent},
 
-  	{ path: 'recherche', component: RechercheComponent},
+  { path: 'recherche', component: RechercheComponent},
 
-
+	
 ];
 
 @NgModule({

@@ -161,6 +161,17 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		console.log("route: produit/ajout avec ", JSON.stringify(req.body));
 		res.end(JSON.stringify({"reponde": "ajout d'un produit dans le panier"}));
 	});
+
+	// Ajouter 1 à la quantité du projet du panier
+	app.post("/panier/ajouterUn/:nom", (req, res) => {
+		console.log("route: produit/ajoutUn avec ", JSON.stringify(req.body));
+		try {
+			db.collection("paniers").updateOne({name: req.body.name, $inc: {quantite: 1}});
+			res.end(JSON.stringify({"reponde": "ajout d'un produit existant dans le panier"}));
+		} catch (e) {
+			res.end(JSON.stringify({"resultat": 0, "message": "Erreur lors de l'ajout " + e}));
+		}
+	});
 });
 
 app.listen(8888);

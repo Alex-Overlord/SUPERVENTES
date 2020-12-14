@@ -10,6 +10,7 @@
             <th>Marque</th>
             <th>Prix</th>
             <th>Quantité</th>
+            <th>Actions</th>
         </tr>
         <tr *ngFor="let produit of produits">
             <td>{{produit['nom']}}</td>
@@ -17,7 +18,13 @@
             <td>{{produit['marque']}}</td> 
             <td>{{produit['prix']}}</td> 
             <td>{{produit['quantite']}}</td> 
+            <td>
+                <a *ngIf="user|async" [routerLink]="['/panier/ajouterUn/:nom', produit.nom]">[Ajouter]</a>
+                <!-- <a *ngIf="user|async" [routerLink]="['/panier/achat/enlever', produit.nom]">[Enlever]</a> -->
+            </td>
         </tr>
     </table>
+
+    <!-- <a *ngIf="user|async" [routerLink]="['/panier/achat', produit.nom, produit.marque]">Vider </a> -->
 
 </div>
