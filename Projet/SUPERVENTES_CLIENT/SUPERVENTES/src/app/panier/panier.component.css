@@ -1,31 +1,9 @@
-/* h1 { */
-  /* position: absolute;  */
-  /* margin: auto; */
-  /* text-align: "center"; */
-  /* width: 200%; */
-/* } */
-
-/* table { */
-  /* position: absolute;  */
-  /* margin: auto;
-  text-align: "center"; */
-  /* width: auto; */
-/* } */
-
-
 #tableau_panier {
-  /* align-content: center; */
   text-align: center;
-  
-  /* border: 2px;
-  border-style: solid; */
 }
 
 table {
   margin: auto;
-  
-  /* border: 2px;
-  border-style: solid; */
 }
 
 th, td {
