@@ -1,4 +1,23 @@
-<h1>Votre panier:</h1>
-<ul>
-    <li *ngFor="let produit of produits"> {{produit['nom']}} ({{produit['type']}}) {{produit['marque']}} {{produit['prix']}} Qt:{{produit['quantite']}}</li> 
-</ul>
+<div id="tableau_panier">
+
+    <h1>Votre panier</h1>
+    <br>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Marque</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+        </tr>
+        <tr *ngFor="let produit of produits">
+            <td>{{produit['nom']}}</td>
+            <td>({{produit['type']}})</td> 
+            <td>{{produit['marque']}}</td> 
+            <td>{{produit['prix']}}</td> 
+            <td>{{produit['quantite']}}</td> 
+        </tr>
+    </table>
+
+</div>
