@@ -129,6 +129,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	
 	/* Ajout user */
 	app.post("/membre/inscription", (req, res)=> {
+		// console.log("ici " + req.body.email);
 		console.log("/membre/inscription/");
 		try{
 			db.collection("membres")
@@ -137,11 +138,14 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				if (documents != undefined && documents.length == 1){
 					res.end(JSON.stringify({"resultat": 0, "message": "Membre déjà inscrit"}));
 				}
-				else{	
+				else {	
 					db.collection("membres")
 					.insertOne( 
 						req.body
 					);
+					db.collection("paniers").insertOne({email: req.body.email, produits: [{}] });
+					// console.log(db.collection("paniers").find(req.body.email));
+					
 					res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
 				}
 			});

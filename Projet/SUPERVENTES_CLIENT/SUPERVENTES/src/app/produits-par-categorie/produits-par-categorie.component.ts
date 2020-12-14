@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProduitsService } from '../produits.service';
+import { AuthentificationService } from '../authentification.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,14 +13,20 @@ import { Observable } from 'rxjs';
 export class ProduitsParCategorieComponent implements OnInit {
   public produits: any;
   public categorie: any;
+  public user: Observable<string>;
 
-  constructor(private produitsService: ProduitsService) {
+  constructor(private produitsService: ProduitsService, private authService: AuthentificationService) {
     console.log("Dans le constructeur du composant produits-par-categorie");
+    this.user = this.authService.getUser();
   }
 
   ngOnInit() {
-    console.log("Dans ngOnInit() du composant produits-par-categorie");    
-    this.produitsService.getProduitsParCategorie(this.produits).subscribe(produits => {this.produits = produits;});
-    this.produitsService.getProduitsParCategorie(this.categorie).subscribe(categorie => {this.categorie = categorie;});
+    console.log("Dans ngOnInit() du composant produits-par-categorie"); 
+
+    this.produitsService.getCategories().subscribe(categories => { this.categorie = categories; });
+
+    this.produitsService.getProduits().subscribe(produits => {
+      this.produits = produits; 
+    });
   }
 }
