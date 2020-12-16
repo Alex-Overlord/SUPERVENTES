@@ -1,5 +1,5 @@
 <div id="tableau_panier">
-
+	<form (ngSubmit)="onSubmit()" >
     <h1>Votre panier</h1>
     <br>
 
@@ -10,7 +10,6 @@
             <th>Marque</th>
             <th>Prix</th>
             <th>Quantité</th>
-            <th>Actions</th>
         </tr>
         <tr *ngFor="let produit of produits">
             <td>{{produit['nom']}}</td>
@@ -18,12 +17,24 @@
             <td>{{produit['marque']}}</td> 
             <td>{{produit['prix']}}</td> 
             <td>{{produit['quantite']}}</td> 
-            <td>
-                <a *ngIf="user|async" [routerLink]="['/panier/ajouterUn/:nom', produit.nom]">[Ajouter]</a>
-                <!-- <a *ngIf="user|async" [routerLink]="['/panier/achat/enlever', produit.nom]">[Enlever]</a> -->
-            </td>
         </tr>
     </table>
+    <h2>Modifier quantitée</h2>
+
+    <table>
+    	<tr>
+    		<th>produit à modifier</th>
+    		<th>Nouvelle quantitée</th>
+    	</tr>
+    	<tr>
+    		<td><input type="text" [(ngModel)]="pname" name="pname"></td>
+    		<td><input type="text" [(ngModel)]="quantite" name="quantite"></td>
+    		<td><input type="submit" name="quantite" value="Modifier quantite"></td>
+    	</tr>
+    </table>
+    </form>
+    <button (click)="payer()">Payer Commande</button>
+    <p> {{message}} </p>
 
     <!-- <a *ngIf="user|async" [routerLink]="['/panier/achat', produit.nom, produit.marque]">Vider </a> -->
 

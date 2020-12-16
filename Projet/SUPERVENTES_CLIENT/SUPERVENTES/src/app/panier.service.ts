@@ -21,8 +21,18 @@ export class PanierService {
 
   constructor(private http: HttpClient) { }
 
+  
+
   getPanier(mail: any): Observable<any>{
   	console.log(this.http.get(this.baseURL+'panier/'+mail));
   	return this.http.get(this.baseURL+'panier/'+mail);
+  }
+
+  panierPayer(mail: any): Observable<any>{
+  	return this.http.post(this.baseURL+'panier/payer/'+mail, null , httpOptions);
+  }
+
+  modifQ(mail: any, quantite: any, nom: any): Observable<any>{
+  	return this.http.post(this.baseURL+'panier/modifQ/'+mail+'/'+nom+'/'+quantite, null, httpOptions);
   }
 }

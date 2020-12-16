@@ -143,7 +143,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 					.insertOne( 
 						req.body
 					);
-					db.collection("paniers").insertOne({email: req.body.email, produits: [{}] });
+					db.collection("paniers").insertOne({email: req.body.email });
 					// console.log(db.collection("paniers").find(req.body.email));
 					
 					res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
@@ -156,22 +156,63 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	});
 
-
-	app.post("/panier/ajout", (req, res) => {
+	/* Ajout d'un produit au panier */
+	app.post("/panier/ajout/:mail", (req, res) => {
 		console.log("route: produit/ajout avec ", JSON.stringify(req.body));
-		res.end(JSON.stringify({"reponde": "ajout d'un produit dans le panier"}));
+		db.collection("paniers")
+		.find({"email": req.params.mail , "produits.nom" : req.body.nom })
+		.toArray((err, documents) => {
+			if (documents != undefined && documents.length == 1){
+			console.log("good");
+				db.collection("paniers").updateOne({"email": req.params.mail, "produits.nom": req.body.nom}, {$inc: {"produits.$.quantite": 1}});
+				res.end("bien");
+			}
+			else{
+				db.collection("paniers").updateOne({"email": req.params.mail}, {$push: { "produits" : req.body}});
+				db.collection("paniers").updateOne({"email": req.params.mail, "produits.nom": req.body.nom}, {$set: { "produits.$.quantite" : 1}});
+			}
+		});
+	});
+	
+	/* Vidage du panier (payer) */
+		app.post("/panier/payer/:mail", (req, res) => {
+		console.log("produit/payer ");
+		db.collection("paniers")
+		.find({"email": req.params.mail})
+		.toArray((err, documents) => {
+			if (documents != undefined && documents.length != 0){
+				db.collection("paniers").updateOne({"email": req.params.mail}, {$set: { "produits" : "[{}]"}});
+				res.end(JSON.stringify({ "message": "Achat effectué bravo ! (Rafraichissez la page)"}));
+			}
+			else{
+				res.end(JSON.stringify({ "message": "Panier déjà vide !"}));
+			}
+		});
 	});
 
-	// Ajouter 1 à la quantité du projet du panier
-	app.post("/panier/ajouterUn/:nom", (req, res) => {
-		console.log("route: produit/ajoutUn avec ", JSON.stringify(req.body));
-		try {
-			db.collection("paniers").updateOne({name: req.body.name, $inc: {quantite: 1}});
-			res.end(JSON.stringify({"reponde": "ajout d'un produit existant dans le panier"}));
-		} catch (e) {
-			res.end(JSON.stringify({"resultat": 0, "message": "Erreur lors de l'ajout " + e}));
-		}
+	// Modifie la quantité d'un produit
+	app.post("/panier/modifQ/:mail/:nom/:quantite", (req, res) => {
+		console.log("produit/modifQ/"+req.params.nom+"/"+req.params.quantite);
+		db.collection("paniers")
+		.find({"email": req.params.mail, "produits.nom" : req.params.nom })
+		.toArray((err, documents) => {
+			if (documents != undefined && documents.length != 0){
+				if(req.params.quantite == 0){
+					db.collection("paniers").updateOne({"email": req.params.mail}, { "$pull": { "produits":{ "nom" : req.params.nom}}},false,false);
+					res.end(JSON.stringify({ "message": "Produit Supprimé"}));
+				}
+				else{
+					db.collection("paniers").updateOne({"email": req.params.mail, "produits.nom": req.params.nom}, {$set: { "produits.$.quantite" : req.params.quantite}});
+					res.end(JSON.stringify({ "message": "Modification effectuée"}));
+				}
+				
+			}
+			else{
+				res.end(JSON.stringify({ "message": "Erreur produit non trouvé"}));
+			}
+		});
 	});
+	
 });
 
 app.listen(8888);
