@@ -1,4 +1,0 @@
-<ul>
-    <li *ngFor="let produit of produits"> {{produit['nom']}} ({{produit['type']}})<a *ngIf="user|async" [routerLink]="['/panier/achat', produit.nom, produit.marque,produit.type,produit.prix]"> achat </a></li> 
-</ul>
-
