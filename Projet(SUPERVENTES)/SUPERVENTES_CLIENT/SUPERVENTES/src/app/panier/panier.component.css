@@ -1,0 +1,14 @@
+#tableau_panier {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+}
+
+th, td {
+  padding: 10px;
+
+  border: 2px;
+  border-style: solid;
+}
