@@ -27,7 +27,7 @@ export class PanierComponent implements OnInit {
   public mail: String = "";
   public user: Observable<string>;
   public message: String = "";
-  public quantite: int;
+  public quantite: any;
   public pname: any;
 
   constructor(private http: HttpClient,private authService: AuthentificationService,  private route: ActivatedRoute, private panierS: PanierService, private router: Router) { 
